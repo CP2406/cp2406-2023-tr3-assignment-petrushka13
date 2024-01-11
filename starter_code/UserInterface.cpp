@@ -1,7 +1,9 @@
 #include <iostream>
 #include <stdexcept>
 #include <exception>
+#include "my_debugger.h"
 #include "Database.h"
+
 
 using namespace std;
 using namespace Records;
@@ -14,6 +16,8 @@ void doDemote(Database& db);
 
 int main()
 {
+    log("started");
+
 	Database employeeDB;
 
 	bool done = false;
@@ -21,6 +25,7 @@ int main()
 		int selection = displayMenu();
 		switch (selection) {
 		case 0:
+            log("case 0");
 			done = true;
 			break;
 		case 1:
@@ -80,6 +85,7 @@ int displayMenu()
 
 void doHire(Database& db)
 {
+    log("start");
     string firstName;
     string lastName;
 
@@ -89,6 +95,7 @@ void doHire(Database& db)
     cin >> lastName;
     
     db.addEmployee(firstName, lastName);
+    log("end");
 }
 
 void doFire(Database& db)
