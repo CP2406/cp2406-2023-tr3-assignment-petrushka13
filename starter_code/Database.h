@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include "my_debugger.h"
 #include "Employee.h"
 
 namespace Records {
@@ -12,11 +13,16 @@ namespace Records {
 	public:
 		Employee& addEmployee(const std::string& firstName,
 							  const std::string& lastName);
+		Employee& addEmployee(
+		    const std::string& firstName,
+		    const std::string& middleName,
+			const std::string& lastName);
 		Employee& getEmployee(int employeeNumber);
 		Employee& getEmployee(const std::string& firstName,
 							  const std::string& lastName);
 
 		void displayAll() const;
+		void saveToFile(const string& fileName) const;
 		void displayCurrent() const;
 		void displayFormer() const;
 
