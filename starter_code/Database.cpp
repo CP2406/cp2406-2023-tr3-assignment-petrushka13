@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <algorithm>
 #include "Database.h"
 
 using namespace std;
@@ -57,6 +58,30 @@ namespace Records {
 	{
 		for (const auto& employee : mEmployees) {
 			employee.display();
+		}
+	}
+
+	void Database::saveToFile(const string& fileName) const
+	{
+		ofstream dbFile(fileName, ios_base::trunc);
+		if (dbFile.fail()) {
+			cerr << "Unable to open debug file" << endl;
+			return;
+		}
+
+
+        dbFile << "EmployeeNumber";
+		dbFile << ", " << "Address";
+		dbFile << endl;
+		for (const auto& employee : mEmployees) {
+			string emplNumStr = to_string(employee.getEmployeeNumber());
+			dbFile << emplNumStr;
+			string addr = employee.getAddress();
+
+			std::replace(addr.begin(), addr.end(), ',', ' ');
+
+            dbFile << ", " << addr;
+			dbFile << endl;
 		}
 	}
 

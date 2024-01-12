@@ -25,6 +25,7 @@ int main()
     log("started");
 
 	Database employeeDB;
+    string dbFileName = "saved_db.csv";
 
 	bool done = false;
 	while (!done) {
@@ -55,6 +56,9 @@ int main()
         case 7:
 			employeeDB = makeNewDatabase();
 			break;
+        case 8:
+			employeeDB.saveToFile(dbFileName);
+			break;
 		default:
 			cerr << "Unknown command." << endl;
 			break;
@@ -84,6 +88,8 @@ int displayMenu()
     cout << "5) List all current employees" << endl;
     cout << "6) List all former employees" << endl;
     cout << "7) Make new database" << endl;
+    cout << "8) Save database to file" << endl;
+    cout << "9) Load database form file" << endl;
     cout << "0) Quit" << endl;
     cout << endl;
     cout << "---> ";
