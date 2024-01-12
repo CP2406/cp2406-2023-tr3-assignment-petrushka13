@@ -1,8 +1,12 @@
 #include <iostream>
 #include <stdexcept>
 #include <exception>
-#include "my_debugger.h"
+
+// #include "my_debugger.h"
 #include "Database.h"
+
+
+const string Logger::msDebugFileName = "debugfile.txt";
 
 
 using namespace std;
@@ -13,6 +17,8 @@ void doHire(Database& db);
 void doFire(Database& db);
 void doPromote(Database& db);
 void doDemote(Database& db);
+
+Database makeNewDatabase();
 
 int main()
 {
@@ -46,6 +52,9 @@ int main()
 		case 6:
 			employeeDB.displayFormer();
 			break;
+        case 7:
+			employeeDB = makeNewDatabase();
+			break;
 		default:
 			cerr << "Unknown command." << endl;
 			break;
@@ -74,6 +83,7 @@ int displayMenu()
     cout << "4) List all employees" << endl;
     cout << "5) List all current employees" << endl;
     cout << "6) List all former employees" << endl;
+    cout << "7) Make new database" << endl;
     cout << "0) Quit" << endl;
     cout << endl;
     cout << "---> ";
@@ -130,4 +140,43 @@ void doPromote(Database& db)
     } catch (const std::logic_error& exception) {
         cerr << "Unable to promote employee: " << exception.what() << endl;
     }
+}
+
+Database makeNewDatabase()
+{
+    log("start");
+    vector<string> arrFirst {
+        "first1", "Ann", "Bob", "first2", "Cathy" 
+        "first3", "Ann2", "Bob2", "first10", "Cathy2"
+        "first4", "Ann3", "Bob3", "first11", "Cathy3"
+        "first5", "Ann4", "Bob4", "first12", "Cathy4"
+    };
+
+    vector<string> arrMiddle {
+        "middle1", "Don", "Bob", "first2", "Cathy" 
+        "middle3", "Don2", "Bob2", "first10", "Cathy2"
+        "middle4", "Don3", "Bob3", "first11", "Cathy3"
+        "middle5", "Don4", "Bob4", "first12", "Cathy4"
+    };
+
+    vector<string> arrLast {
+        "last1", "Smith", "Smith2", "last2", "last3" 
+
+    };
+
+    Database db;
+    for (const string& firstName: arrFirst) {
+        for (const string& middleName: arrMiddle) {
+            for (const string& lastName: arrLast) {
+
+                // random streetNumber,
+                // string
+                Employee& empl = db.addEmployee(
+                    firstName, middleName, lastName);
+                empl.setAddress()
+            }
+        }
+    }
+    log("end");
+    return db;
 }

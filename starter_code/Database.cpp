@@ -9,11 +9,26 @@ namespace Records {
 	Employee& Database::addEmployee(const string& firstName,
 		const string& lastName)
 	{
+		log("start");
 		Employee theEmployee(firstName, lastName);
 		theEmployee.setEmployeeNumber(mNextEmployeeNumber++);
 		theEmployee.hire();
 		mEmployees.push_back(theEmployee);
+        log("end");
+		return mEmployees[mEmployees.size() - 1];
+	}
 
+	Employee& Database::addEmployee(
+		const string& firstName,
+		const string& middleName,
+		const string& lastName)
+	{
+		log("start");
+		Employee theEmployee(firstName, middleName, lastName);
+		theEmployee.setEmployeeNumber(mNextEmployeeNumber++);
+		theEmployee.hire();
+		mEmployees.push_back(theEmployee);
+        log("end");
 		return mEmployees[mEmployees.size() - 1];
 	}
 

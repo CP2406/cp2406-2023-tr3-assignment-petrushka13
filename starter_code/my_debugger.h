@@ -27,16 +27,17 @@ class Logger
 			logfile << endl;
 
             ((std::cout << args), ...);
-			std::cout << "\n";
+			std::cout << endl;
 		}
 
     private:
 
-        static const string msDebugFileName;
+        // static const string msDebugFileName = "debugfile2.txt";
+		static const string msDebugFileName;
 		
 };
 
-const string Logger::msDebugFileName = "debugfile.txt";
+// const string Logger::msDebugFileName = "debugfile.txt";
 
 	#define log(...) Logger::log(__func__, "(): ", __VA_ARGS__)
 #else
