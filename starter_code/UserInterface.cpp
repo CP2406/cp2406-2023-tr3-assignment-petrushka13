@@ -165,15 +165,19 @@ Database makeNewDatabase()
     };
 
     Database db;
+    int count = 0;
     for (const string& firstName: arrFirst) {
         for (const string& middleName: arrMiddle) {
             for (const string& lastName: arrLast) {
 
                 // random streetNumber,
                 // string
+                count++;
+                string countStr = to_string(count);
                 Employee& empl = db.addEmployee(
                     firstName, middleName, lastName);
-                empl.setAddress()
+                string address = countStr + " street#" + countStr;
+                empl.setAddress(address);
             }
         }
     }
